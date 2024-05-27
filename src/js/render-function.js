@@ -8,7 +8,7 @@ const lightbox = new SimpleLightbox('.gallery a', {
 });
 
 const renderImages = (arrImgs, gallery) => {
-  const HTMLElement = arrImgs.hits
+  const HTMLElement = arrImgs
     .map(
       ({
         largeImageURL,
@@ -19,7 +19,7 @@ const renderImages = (arrImgs, gallery) => {
         comments,
         downloads,
       }) =>
-        `<li class="gallery-item">
+        `<li name="galleryItem" class="gallery-item">
         <a class="gallery-link" href="${largeImageURL}">
           <img src="${webformatURL}" alt="${tags}" />
         </a>
