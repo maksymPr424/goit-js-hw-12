@@ -27,7 +27,6 @@ const addImages = async (searchText, page = 1) => {
   try {
     const response = await getArr(searchText, page);
     loader.style.display = 'block';
-    loadMoreBtn.style.display = 'block';
 
     if (response.data.hits.length === 0) {
       return iziToast.warning({
@@ -35,6 +34,7 @@ const addImages = async (searchText, page = 1) => {
           'Sorry, there are no images matching your search query. Please try again!',
       });
     }
+    loadMoreBtn.style.display = 'block';
     const totalPages = Math.ceil(response.data.totalHits / 15);
     if (page === totalPages) {
       loadMoreBtn.style.display = 'none';
