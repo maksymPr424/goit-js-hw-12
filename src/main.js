@@ -26,14 +26,15 @@ iziToast.settings({
 const addImages = async (searchText, page = 1) => {
   try {
     const response = await getArr(searchText, page);
-    loadMoreBtn.style.display = 'block';
+    loader.style.display = 'block';
 
     if (response.data.hits.length === 0) {
-      iziToast.warning({
+      return iziToast.warning({
         message:
           'Sorry, there are no images matching your search query. Please try again!',
       });
     }
+    loadMoreBtn.style.display = 'block';
     const totalPages = Math.ceil(response.data.totalHits / 15);
     if (page > totalPages) {
       loadMoreBtn.style.display = 'none';
@@ -61,14 +62,13 @@ const submitSearchForm = async e => {
   e.preventDefault();
   gallery.innerHTML = '';
   loadMoreBtn.style.display = 'none';
-  loader.style.display = 'block';
 
   searchText = e.target.searchTerm.value.trim().toLowerCase();
   page = 1;
   addImages(searchText);
 };
 
-const loadMore = async e => {
+const loadMore = async () => {
   page += 1;
   addImages(searchText, page);
 };
