@@ -26,6 +26,7 @@ iziToast.settings({
 const addImages = async (searchText, page = 1) => {
   try {
     const response = await getArr(searchText, page);
+    loadMoreBtn.style.display = 'block';
 
     if (response.data.hits.length === 0) {
       iziToast.warning({
@@ -40,7 +41,6 @@ const addImages = async (searchText, page = 1) => {
         message: "We're sorry, but you've reached the end of search results.",
       });
     }
-    loadMoreBtn.style.display = 'block';
 
     renderImages(response.data.hits, gallery);
   } catch (error) {
